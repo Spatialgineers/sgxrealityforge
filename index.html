@@ -62,6 +62,13 @@
             outline: none !important;
         }
         input:focus, textarea:focus { border-color: var(--sgx-yellow) !important; }
+
+        .pilar-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(253, 204, 13, 0.1);
+            padding: 10px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body x-data="{ 
@@ -71,7 +78,6 @@
     accessCode: '',
     lead: { name: '', role: '', company: '', email: '' },
     responses: { q1: '', q2: '', q3: '' },
-    
     get progress() { return (this.currentStation / 3) * 100 }
 }">
 
@@ -82,7 +88,7 @@
             </div>
             <span class="sgx-title text-[10px] tracking-[0.3em]">Synthesize System</span>
         </div>
-        <div x-show="step === 'forge'" class="text-[9px] text-[#FDCC0D] animate-pulse">
+        <div x-show="step === 'forge'" class="text-[9px] text-[#FDCC0D] animate-pulse font-bold">
             FORJA ACTIVA: ESTACIÓN <span x-text="currentStation"></span>/3
         </div>
     </header>
@@ -136,28 +142,44 @@
             <div x-show="currentStation === 1" class="space-y-6">
                 <div class="border-l-2 border-[#FDCC0D] pl-4">
                     <h2 class="text-xl font-bold">Estación 1: In-mersivo</h2>
-                    <p class="text-xs text-gray-400 mt-2">Conceptualización y escultura digital de activos únicos.</p>
+                    <p class="text-xs text-[#FDCC0D] mt-1 uppercase font-bold tracking-widest">El Origen Digital</p>
                 </div>
                 <div class="bg-white/5 p-6 rounded-sm space-y-4">
-                    <p class="text-xs italic text-yellow-100/70">"Aquí detenemos el tiempo para diseñar el ADN de tu marca."</p>
-                    <label class="block text-[10px] text-[#FDCC0D] uppercase font-bold">Data Capture:</label>
+                    <div class="text-[11px] text-gray-300 space-y-3 leading-relaxed">
+                        <p><strong class="text-white uppercase">¿Qué está pasando aquí?</strong></p>
+                        <p>Estás viendo el nacimiento de la Propiedad Intelectual. En el iPad Pro, esculpimos digitalmente cada polígono. No usamos plantillas; construimos el ADN visual de tu marca desde cero.</p>
+                        <ul class="list-disc pl-5 text-gray-500">
+                            <li>Escultura orgánica con Nomad Sculpt.</li>
+                            <li>Definición de escala y proporciones espaciales.</li>
+                            <li>Creación de identidad técnica única.</li>
+                        </ul>
+                    </div>
+                    <label class="block text-[10px] text-[#FDCC0D] uppercase font-bold mt-6">Análisis de Visión:</label>
                     <textarea x-model="responses.q1" rows="3" placeholder="¿Tienes una idea que nunca has podido desarrollar?" class="w-full p-4 text-xs"></textarea>
-                    <button @click="currentStation = 2" :disabled="!responses.q1" class="btn-sgx w-full">Procesar Visión &rarr;</button>
+                    <button @submit.prevent @click="currentStation = 2" :disabled="!responses.q1" class="btn-sgx w-full">Procesar Activo &rarr;</button>
                 </div>
             </div>
 
             <div x-show="currentStation === 2" class="space-y-6">
                 <div class="border-l-2 border-[#FDCC0D] pl-4">
                     <h2 class="text-xl font-bold">Estación 2: In-teractivo</h2>
-                    <p class="text-xs text-gray-400 mt-2">Ingeniería de lógica, físicas y mecánicas de usuario.</p>
+                    <p class="text-xs text-[#FDCC0D] mt-1 uppercase font-bold tracking-widest">La Ingeniería del Movimiento</p>
                 </div>
                 <div class="bg-white/5 p-6 rounded-sm space-y-4">
-                    <p class="text-xs italic text-yellow-100/70">"Donde la idea cobra vida y el usuario toma el control."</p>
-                    <label class="block text-[10px] text-[#FDCC0D] uppercase font-bold">Data Capture:</label>
+                    <div class="text-[11px] text-gray-300 space-y-3 leading-relaxed">
+                        <p><strong class="text-white uppercase">¿Qué está pasando aquí?</strong></p>
+                        <p>Inyectamos lógica al diseño. En la estación de alto rendimiento, el activo cobra vida mediante rigging (esqueleto digital) y programación en motores gráficos.</p>
+                        <ul class="list-disc pl-5 text-gray-500">
+                            <li>Programación de físicas y colisiones.</li>
+                            <li>Optimización de mallas para WebXR y Mobile.</li>
+                            <li>Creación de mecánicas: El usuario ahora tiene agencia.</li>
+                        </ul>
+                    </div>
+                    <label class="block text-[10px] text-[#FDCC0D] uppercase font-bold">Estado del Futuro:</label>
                     <textarea x-model="responses.q2" rows="3" placeholder="¿Tienes una visión clara del futuro?" class="w-full p-4 text-xs"></textarea>
                     <div class="flex space-x-2">
                         <button @click="currentStation = 1" class="btn-sgx flex-1 opacity-50">&larr;</button>
-                        <button @click="currentStation = 3" :disabled="!responses.q2" class="btn-sgx flex-[3]">Inyectar Lógica &rarr;</button>
+                        <button @click="currentStation = 3" :disabled="!responses.q2" class="btn-sgx flex-[3]">Compilar Lógica &rarr;</button>
                     </div>
                 </div>
             </div>
@@ -165,25 +187,49 @@
             <div x-show="currentStation === 3" class="space-y-6">
                 <div class="border-l-2 border-cyan-400 pl-4">
                     <h2 class="text-xl font-bold text-cyan-400">Estación 3: In-terconectado</h2>
-                    <p class="text-xs text-gray-400 mt-2">El clímax: Ecosistemas Phygitales y Pilares SGX.</p>
+                    <p class="text-xs text-cyan-400 mt-1 uppercase font-bold tracking-widest">La Explosión del Ecosistema SGX</p>
                 </div>
-                <div class="bg-white/5 p-6 rounded-sm space-y-4">
-                    <p class="text-xs italic text-yellow-100/70">"Tu activo digital ahora existe en todas partes simultáneamente."</p>
-                    <label class="block text-[10px] text-[#FDCC0D] uppercase font-bold">Data Capture:</label>
-                    <textarea x-model="responses.q3" rows="3" placeholder="¿Qué esperas para ingeniar tu imaginación y construir tu realidad con nosotros?" class="w-full p-4 text-xs"></textarea>
-                    <button @click="step = 'reward'" :disabled="!responses.q3" class="btn-sgx w-full bg-[#FDCC0D] !text-black">Finalizar Sincronización</button>
+                
+                <div class="grid grid-cols-1 gap-3 mb-6">
+                    <div class="pilar-card">
+                        <h4 class="text-[10px] font-bold text-[#FDCC0D]">SGX.SHOWCASE // VR 360º</h4>
+                        <p class="text-[9px] text-gray-400">Experiencia de inmersión total (Calidad FITUR). Entra al mundo del activo en tamaño real.</p>
+                    </div>
+                    <div class="pilar-card">
+                        <h4 class="text-[10px] font-bold text-[#FDCC0D]">SGX.STAGE // AR VISUALIZER</h4>
+                        <p class="text-[9px] text-gray-400">Integración MediaPipe. Filtro AR reactivo al sonido del evento y al movimiento humano.</p>
+                    </div>
+                    <div class="pilar-card">
+                        <h4 class="text-[10px] font-bold text-[#FDCC0D]">SGX.STORY // IA CONVERSACIONAL</h4>
+                        <p class="text-[9px] text-gray-400">Potenciado por ElevenLabs. Habla con el activo y conoce la historia de Spatialgineers.</p>
+                    </div>
+                    <div class="pilar-card">
+                        <h4 class="text-[10px] font-bold text-[#FDCC0D]">SGX.SPARK // GAMIFICACIÓN ROBLOX</h4>
+                        <p class="text-[9px] text-gray-400">El activo digital como avatar jugable en mundos virtuales masivos.</p>
+                    </div>
+                    <div class="pilar-card">
+                        <h4 class="text-[10px] font-bold text-[#FDCC0D]">SGX.SYSTEM // MANUFACTURA FÍSICA</h4>
+                        <p class="text-[9px] text-gray-400">Cierre de ciclo Phygital: Impresión 3D en vivo del modelo digital.</p>
+                    </div>
+                </div>
+
+                <div class="bg-cyan-900/20 p-6 rounded-sm space-y-4 border border-cyan-500/30">
+                    <label class="block text-[10px] text-cyan-400 uppercase font-bold">Llamado a la Realidad:</label>
+                    <textarea x-model="responses.q3" rows="3" placeholder="¿Qué esperas para ingeniar tu imaginación y construir tu realidad con nosotros?" class="w-full p-4 text-xs !border-cyan-500/50"></textarea>
+                    <button @click="step = 'reward'" :disabled="!responses.q3" class="btn-sgx w-full bg-cyan-500 !text-black !border-cyan-500">Sincronizar Ecosistema</button>
                 </div>
             </div>
         </section>
 
-        <section x-show="step === 'reward'" x-transition class="text-center">
-            <h2 class="text-2xl font-bold neon-text-yellow mb-6 italic">Sincronización Exitosa</h2>
+        <section x-show="step === 'reward'" x-transition class="text-center pb-20">
+            <h2 class="text-2xl font-bold neon-text-yellow mb-6 italic">Sincronización Completa</h2>
             
             <div class="neon-border rounded-lg overflow-hidden bg-black mb-8 relative">
-                <div x-show="!unlocked" class="absolute inset-0 z-20 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center p-6">
-                    <span class="text-[10px] text-gray-500 uppercase mb-4 tracking-[0.4em]">Asset Encriptado</span>
+                <div x-show="!unlocked" class="absolute inset-0 z-20 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-6">
+                    <span class="text-[10px] text-gray-500 uppercase mb-4 tracking-[0.4em]">Asset Protegido por IP</span>
+                    <p class="text-[9px] text-gray-400 mb-6 max-w-[200px]">Ingresa el código de la estación final para liberar el archivo STL.</p>
                     <div class="flex space-x-2">
-                        <input type="text" x-model="accessCode" placeholder="CÓDIGO TERMINAL" class="bg-transparent border border-yellow-500/50 p-2 text-center text-xs uppercase">
+                        <input type="text" x-model="accessCode" placeholder="CÓDIGO TERMINAL" class="bg-transparent border border-yellow-500/50 p-2 text-center text-xs uppercase w-32">
                         <button @click="if(accessCode.toUpperCase() === 'SGX2026') unlocked = true; else alert('ACCESO DENEGADO')" class="btn-sgx !p-2">Unlock</button>
                     </div>
                 </div>
@@ -197,19 +243,20 @@
             </div>
 
             <div x-show="unlocked" class="animate-pulse">
-                <p class="text-xs text-gray-400 mb-4 tracking-tighter uppercase">Felicidades <span x-text="lead.name"></span>. El activo está listo para manufactura.</p>
-                <a href="data:text/plain,STL_RANDOM_DATA" download="Highcoon_SGX.stl" class="btn-sgx block w-full bg-cyan-500 !text-black !border-cyan-500">
+                <p class="text-[10px] text-cyan-400 mb-4 tracking-tighter uppercase font-bold">Felicidades <span x-text="lead.name"></span>. El ciclo se ha completado.</p>
+                <a href="data:text/plain,STL_RANDOM_DATA" download="Highcoon_SGX.stl" class="btn-sgx block w-full bg-cyan-500 !text-black !border-cyan-500 py-4">
                     Descargar .STL (Systems Pillar)
                 </a>
+                <p class="text-[8px] text-gray-600 mt-4">Spatialgineers retiene IP de mallas base. Licencia de impresión otorgada.</p>
             </div>
         </section>
 
     </main>
 
-    <footer class="fixed bottom-0 w-full p-3 bg-black/80 border-t border-gray-900 flex justify-between items-center text-[8px] font-mono text-gray-600 tracking-widest">
+    <footer class="fixed bottom-0 w-full p-3 bg-black/90 border-t border-gray-900 flex justify-between items-center text-[8px] font-mono text-gray-600 tracking-widest z-50">
         <div>SYS_STATUS: <span class="text-green-500">ONLINE</span></div>
-        <div class="hidden md:block">SGX ENTERPRISE ECOSYSTEM // v2026.04</div>
-        <div>BEJUCOS_ISABELA_PR</div>
+        <div class="hidden md:block">SGX SYNTHESIZE ECOSYSTEM // v2026.04</div>
+        <div>BEJUCOS_PR</div>
     </footer>
 
 </body>
